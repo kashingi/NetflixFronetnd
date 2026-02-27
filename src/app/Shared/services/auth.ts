@@ -8,7 +8,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 })
 export class Auth {
 
-  private apiUrl = environment.apiUrl + '/auth';
+  private apiUrl = environment.apiUrl + '/auth/';
 
   constructor(private httpClient: HttpClient) { }
 
