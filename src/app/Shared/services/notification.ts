@@ -14,7 +14,7 @@ export class Notification {
       duration: duration,
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      panelClass: ['nodification-success']
+      panelClass: ['notification-success']
     });
   }
 
@@ -23,7 +23,7 @@ export class Notification {
       duration: duration,
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      panelClass: ['nodification-error']
+      panelClass: ['notification-error']
     });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Notification } from '../Shared/services/notification';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +24,8 @@ export class Signup implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private notification: Notification,
-    private errorHandle: ErrorHandler
+    private errorHandle: ErrorHandler,
+    private detectChange: ChangeDetectorRef
   ) {
     this.signupForm = this.formBuilder.group({
       fullName: ['', [Validators.required, Validators.minLength(8)]],
@@ -35,7 +36,9 @@ export class Signup implements OnInit {
   }
 
   ngOnInit(): void {
-    //TODO
+    if (this.authService.isLoggedIn()) {
+      this.authService.redirectBasedOnRole();
+    }
 
     const email = this.route.snapshot.queryParams['email'];
     if (email) {
@@ -58,11 +61,14 @@ export class Signup implements OnInit {
         this.loading = false;
         this.notification.success(response?.message);
         this.router.navigate(['/login']);
+        this.signupForm.reset();
+        this.detectChange.detectChanges();
       },
       error: (error) => {
         this.loading = false;
-        console.log("The error is :", error)
+        console.log("The error is :", error);
         this.errorHandle.handleError(error, 'registration failed, please try again.');
+        this.detectChange.detectChanges();
       }
     })
   }
