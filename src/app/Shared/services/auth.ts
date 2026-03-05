@@ -80,4 +80,43 @@ export class Auth {
   resendVerificationEmail(email: string) {
     return this.httpClient.post(this.apiUrl + '/resend-verification', { email });
   }
+
+  forgotPassword(email: string) {
+    return this.httpClient.post(this.apiUrl + '/forgot-password', { email });
+  }
+
+  resetPassword(token: string, newPassword: string) {
+    return this.httpClient.post(this.apiUrl + '/reset-password', { token, newPassword });
+  }
+
+  initializeAuth(): Promise<void> {
+    return new Promise((resolve) => {
+      if (!this.isLoggedIn()) {
+        this.handleAuthSuccess(null);
+        resolve();
+        return;
+      }
+
+      this.fetchCurrentUser().subscribe({
+        next: (user) => {
+          this.handleAuthSuccess(user);
+          resolve();
+        },
+        error: () => {
+          this.handleAuthSuccess(null);
+          resolve();
+        }
+      })
+    })
+  }
+
+  private fetchCurrentUser() {
+    return this.httpClient.get(this.apiUrl + '/current-user');
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.currentUserSubject.next(null);
+    this.router.navigate(['/']);
+  }
 }

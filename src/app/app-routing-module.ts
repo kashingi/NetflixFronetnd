@@ -6,12 +6,16 @@ import { Login } from './login/login';
 import { VerifyEmail } from './verify-email/verify-email';
 import { Home } from './user/home/home';
 import { authGuard } from './Shared/guards/auth-guard';
+import { ForgetPassword } from './forget-password/forget-password';
+import { ResetPassword } from './reset-password/reset-password';
 
 const routes: Routes = [
   { path: '', component: Landing },
   { path: 'login', component: Login },
   { path: 'signup', component: Signup },
   { path: 'verify-email', component: VerifyEmail },
+  { path: 'forget-password', component: ForgetPassword },
+  { path: 'reset-password', component: ResetPassword },
   { path: 'home', component: Home, canActivate: [authGuard] },
   {
     path: 'admin', loadChildren: () => import('../app/admin/admin-module').then(m => m.AdminModule),

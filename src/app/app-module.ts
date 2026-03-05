@@ -1,4 +1,4 @@
-import { NgModule, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { inject, NgModule, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
@@ -11,6 +11,9 @@ import { Login } from './login/login';
 import { VerifyEmail } from './verify-email/verify-email';
 import { Home } from './user/home/home';
 import { authInterceptor } from './Shared/interceptors/auth-interceptor';
+import { ForgetPassword } from './forget-password/forget-password';
+import { Auth } from './Shared/services/auth';
+import { ResetPassword } from './reset-password/reset-password';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { authInterceptor } from './Shared/interceptors/auth-interceptor';
     Signup,
     Login,
     VerifyEmail,
-    Home
+    Home,
+    ForgetPassword,
+    ResetPassword
   ],
   imports: [
     BrowserModule,
@@ -27,6 +32,10 @@ import { authInterceptor } from './Shared/interceptors/auth-interceptor';
     SharedModule
   ],
   providers: [
+    provideAppInitializer(() => {
+      const auth = inject(Auth);
+      return auth.initializeAuth();
+    }),
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideHttpClient(withInterceptors([authInterceptor]))
