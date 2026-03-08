@@ -50,6 +50,15 @@ export class Auth {
     if (authData?.token) {
       localStorage.setItem('token', authData.token);
     }
+    if (localStorage.getItem('token')) {
+      const user = {
+        email: authData.email,
+        fullName: authData.fullName,
+        role: authData.role
+      };
+      localStorage.setItem('user', JSON.stringify(user));
+      this.setCurrentUser(user);
+    }
   }
 
   setCurrentUser(user: any | null) {
@@ -115,8 +124,12 @@ export class Auth {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    ['token', 'user'].forEach(key => localStorage.removeItem(key));
     this.currentUserSubject.next(null);
     this.router.navigate(['/']);
+  }
+
+  changePassword(changePasswordData: any) {
+    return this.httpClient.post(this.apiUrl + '/change-password', changePasswordData)
   }
 }

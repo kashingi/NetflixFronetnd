@@ -23,6 +23,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Confirm } from './components/confirm/confirm';
+import { Header } from './components/header/header';
+import { ChangePassword } from './components/change-password/change-password';
 
 const MATERIAL_MODULES = [
   MatIconModule,
@@ -50,7 +53,11 @@ const MATERIAL_MODULES = [
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    Confirm,
+    Header,
+    ChangePassword
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -59,6 +66,9 @@ const MATERIAL_MODULES = [
     ...MATERIAL_MODULES
   ],
   exports: [
+    Confirm,
+    ChangePassword,
+    Header,
     CommonModule,
     RouterModule,
     FormsModule,

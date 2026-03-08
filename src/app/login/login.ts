@@ -51,7 +51,7 @@ export class Login implements OnInit {
       next: (response: any) => {
         this.loading = false;
         this.authService.redirectBasedOnRole();
-        this.changeDetect.detectChanges();
+        this.notification.success('Login successfully.')
       },
       error: (error) => {
         this.loading = false;
