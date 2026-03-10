@@ -4,6 +4,7 @@ import { ChangePassword } from '../components/change-password/change-password';
 import { DIALOG_CONFIG } from '../constants/app.constants';
 import { Observable } from 'rxjs';
 import { Confirm } from '../components/confirm/confirm';
+import { ManageVideo } from '../../admin/dialog/manage-video/manage-video';
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +38,12 @@ export class Dialog {
     });
 
     return dialogRef.afterClosed();
+  }
+
+  openVideoFormDialog(mode: 'create' | 'edit', video?: any): MatDialogRef<ManageVideo> {
+    return this.dialog.open(ManageVideo, {
+      ...DIALOG_CONFIG.VIDEO_FROM,
+      data: { mode, video }
+    });
   }
 }

@@ -29,15 +29,15 @@ export const DIALOG_CONFIG = {
     VIDEO_PLAYER: {
         with: '100',
         height: '100vh',
-        maxwidth: '100vw',
-        maxheight: '100vh',
+        maxWidth: '100vw',
+        maxHeight: '100vh',
         panelClass: 'video-player-dialog',
         hasBackdrop: true,
         disableClose: false
     },
     CHANGE_PASSWORD: {
         width: '600px',
-        maxwidth: '90vw',
+        maxWidth: '90vw',
         panelClass: 'user-dialog',
         hasBackdrop: true,
         disableClose: false
@@ -50,16 +50,16 @@ export const DIALOG_CONFIG = {
     },
     MANAGE_USER: {
         width: '600px',
-        maxwidth: '90vw',
+        maxWidth: '90vw',
         panelClass: 'user-dialog',
         hasBackdrop: true,
         disableClose: false
     },
     VIDEO_FROM: {
         width: '95vw',
-        maxwidth: '1400px',
+        maxWidth: '1600px',
         height: 'auto',
-        maxheight: '95vh',
+        maxHeight: '95vh',
         panelClass: 'video-form-dialog',
         hasBackdrop: true,
         disableClose: false
