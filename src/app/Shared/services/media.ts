@@ -42,40 +42,41 @@ export class Media {
     )
   }
 
-  getMediaUrl(mediaValue: any, type: 'image' | 'video', options?: {
-    userCache?: boolean;
-  }): string | null {
+  getMediaUrl(mediaValue: any, type: 'image' | 'video', options?: { useCache?: boolean }): string | null {
+
     let value = mediaValue;
+
     if (type === 'image' && mediaValue && typeof mediaValue === 'object' && mediaValue.poster) {
       value = mediaValue.poster;
     }
 
-    if (!value) {
-      return null;
-    }
+    if (!value) return null;
 
     let uuid = value;
-    if (value.includes(`${type}`)) {
-      uuid = value.substring(value.lastIndexOf('/' + 1))
+
+    // Extract UUID if full URL
+    if (value.startsWith('http')) {
+      uuid = value.substring(value.lastIndexOf('/') + 1);
     }
 
-    if (options?.userCache && type === 'image' && this.imageCache.has(uuid)) {
+    if (value.includes('/')) {
+      uuid = value.substring(value.lastIndexOf('/') + 1);
+    }
+
+    if (options?.useCache && type === 'image' && this.imageCache.has(uuid)) {
       return this.imageCache.get(uuid)!;
     }
 
-    if (uuid.startsWith('blob') || uuid.startsWith('data')) {
+    if (uuid.startsWith('blob:') || uuid.startsWith('data:')) {
       return uuid;
     }
 
     const token = this.authService.getToken();
-    if (!token) {
-      console.log(`No token for ${type} loading`);
-      return null;
-    }
+    if (!token) return null;
 
-    const authenticatedUrl = `${this.apiUrl}/${type}/${uuid}?=token=${encodeURIComponent(token)}`;
+    const authenticatedUrl = `${this.apiUrl}/${type}/${uuid}?token=${encodeURIComponent(token)}`;
 
-    if (options?.userCache && type === 'image') {
+    if (options?.useCache && type === 'image') {
       this.imageCache.set(uuid, authenticatedUrl);
     }
 

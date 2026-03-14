@@ -20,7 +20,11 @@ export const VIDEO_CATEGORIES = [
     'Western',
     'Musical',
     'Sport',
-    'Family'
+    'Family',
+    'Technology',
+    'Software',
+    'AI',
+    'Neural Networks'
 ];
 
 export const RATINGS = ['G', 'PG', 'PG-13', 'R', 'NC-17'];
@@ -56,7 +60,7 @@ export const DIALOG_CONFIG = {
         disableClose: false
     },
     VIDEO_FROM: {
-        width: '95vw',
+        width: '85vw',
         maxWidth: '1600px',
         height: 'auto',
         maxHeight: '95vh',

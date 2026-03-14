@@ -20,7 +20,7 @@ export class Video {
       .set('size', size);
 
     if (search) {
-      params.set('search', search);
+      params = params.set('search', search);
     }
 
     return this.httpClient.get(this.apiUrlAdmin + '/getVideos', { params })
@@ -52,7 +52,7 @@ export class Video {
       .set('size', size);
 
     if (search) {
-      params.set('search', search);
+      params = params.set('search', search);
     }
 
     return this.httpClient.get(this.apiUrl + '/getPublished', { params })

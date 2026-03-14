@@ -67,7 +67,7 @@ export class Header implements OnInit, OnDestroy {
       'Logout',
       'Are you sure you want to logout from your account ?',
       'Confirm',
-      'Cancle',
+      'Cancel',
       'warning',
     ).subscribe((result => {
       if (result) {

@@ -26,6 +26,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Confirm } from './components/confirm/confirm';
 import { Header } from './components/header/header';
 import { ChangePassword } from './components/change-password/change-password';
+import { VideoPlayer } from './components/video-player/video-player';
 
 const MATERIAL_MODULES = [
   MatIconModule,
@@ -56,7 +57,8 @@ const MATERIAL_MODULES = [
   declarations: [
     Confirm,
     Header,
-    ChangePassword
+    ChangePassword,
+    VideoPlayer
   ],
   imports: [
     CommonModule,

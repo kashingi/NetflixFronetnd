@@ -63,7 +63,7 @@ export class ManageVideo implements OnInit {
         title: video.title,
         description: video.description,
         year: video.year,
-        ratiing: video.rating,
+        rating: video.rating,
         categories: video.categories || [],
         duration: video.duration,
         src: this.extractUuidFromUrl(video.src),
@@ -72,7 +72,7 @@ export class ManageVideo implements OnInit {
       });
 
       if (video.src) {
-        this.loadPosterPreview(video.src);
+        this.loadVideoPreview(video.src);
       }
 
       if (video.poster) {
