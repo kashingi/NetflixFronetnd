@@ -31,8 +31,8 @@ export const RATINGS = ['G', 'PG', 'PG-13', 'R', 'NC-17'];
 
 export const DIALOG_CONFIG = {
     VIDEO_PLAYER: {
-        with: '100',
-        height: '100vh',
+        width: '80vw',
+        height: '80vh',
         maxWidth: '100vw',
         maxHeight: '100vh',
         panelClass: 'video-player-dialog',
