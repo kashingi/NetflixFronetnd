@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Header } from '../Shared/components/header/header';
 import { VideoList } from './video-list/video-list';
+import { UserList } from './user-list/user-list';
 
 const routes: Routes = [
   {
     path: '', component: Header,
     children: [
       { path: '', redirectTo: 'videos', pathMatch: 'full' },
-      { path: 'videos', component: VideoList }
+      { path: 'videos', component: VideoList },
+      { path: 'users', component: UserList }
     ]
   }
 ];
