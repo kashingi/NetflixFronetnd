@@ -54,6 +54,16 @@ export class VideoPlayer implements OnInit, OnDestroy {
   
   }
 
+  ngAfterViewInit(): void {
+    const video = this.videoElement?.nativeElement;
+
+    if (video) {
+      video.muted = true; // ✅ ensure browser allows play
+    }
+
+    this.startControlsTimer();
+  }
+
   //Initialization and cleanup
   private loadAuthenticatedMovie(): void {
     this.authenticatedVideoUrl = this.mediaService.getMediaUrl(this.video.src, 'video');
@@ -173,16 +183,26 @@ export class VideoPlayer implements OnInit, OnDestroy {
     const video = this.videoElement.nativeElement;
     this.pauseAllOtherVideos(video);
 
+    // if (video.paused) {
+    //   video.play().then(() => {
+    //     this.isPlaying = true;
+    //   }).catch(err => {
+    //     console.error('Playing error : ', err);
+    //     this.isPlaying = false;
+    //   });
+    // } else {
+    //   video.pause();
+    //   this.isPlaying = false;
+    // }
+
     if (video.paused) {
       video.play().then(() => {
         this.isPlaying = true;
       }).catch(err => {
         console.error('Playing error : ', err);
-        this.isPlaying = false;
       });
     } else {
       video.pause();
-      this.isPlaying = false;
     }
   }
 

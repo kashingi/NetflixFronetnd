@@ -4,7 +4,7 @@
     </button>
 
 
-    <video #videoPlayer (loadedmetadata)="onLoadmetaData()" (timeupdate)="onTimeUpdate()" (click)="onVideoClick()"
+    <video #videoPlayer muted (loadedmetadata)="onLoadmetaData()" (timeupdate)="onTimeUpdate()" (click)="onVideoClick()"
         (play)="isPlaying = true" (pause)="isPlaying = false" (ended)="isPlaying = false" preload="metadata" playsinline
         class="video-element">
         <source [src]="videoSrc" type="video/mp4">Broswer cannot play this

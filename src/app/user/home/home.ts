@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { debounce, debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { Video } from '../../Shared/services/video';
 import { Watchlist } from '../../Shared/services/watchlist';
@@ -44,7 +44,8 @@ export class Home implements OnInit, OnDestroy{
     public utilityService: Utility,
     public mediaService: Media,
     private dialogService: Dialog,
-    private errorHandler: ErrorHandler
+    private errorHandler: ErrorHandler,
+    private ngZone: NgZone
 
   ) {}
 
@@ -86,9 +87,12 @@ export class Home implements OnInit, OnDestroy{
   }
 
   private startSlider() {
-    this.sliderInterval = setInterval(() => {
-      this.nextSlide();
-    })
+    if (this.featuredVideos.length > 0) {
+      queueMicrotask(() => {
+        this.currentSlideIndex =
+        (this.currentSlideIndex + 1) % this.featuredVideos.length;
+      })
+    }
   }
 
   private stopSlider() {
@@ -135,7 +139,6 @@ export class Home implements OnInit, OnDestroy{
     this.error = false;
     this.currentPage = 0;
     this.allVideos = [];
-    this.featuredVideos = [];
     const search = this.searchQuery.trim() || undefined;
     const isSearching = !!search;
     this.loading =  true;
