@@ -8,6 +8,7 @@ import { Home } from './user/home/home';
 import { authGuard } from './Shared/guards/auth-guard';
 import { ForgetPassword } from './forget-password/forget-password';
 import { ResetPassword } from './reset-password/reset-password';
+import { MyFavorites } from './user/my-favorites/my-favorites';
 
 const routes: Routes = [
   { path: '', component: Landing },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'forget-password', component: ForgetPassword },
   { path: 'reset-password', component: ResetPassword },
   { path: 'home', component: Home, canActivate: [authGuard] },
+  { path: 'my-favorites', component: MyFavorites },
   {
     path: 'admin', loadChildren: () => import('../app/admin/admin-module').then(m => m.AdminModule),
     canActivate: [authGuard]

@@ -21,7 +21,7 @@ export class Home implements OnInit, OnDestroy{
   loading = true;
   loadingMore = false;
   error = false;
-  searchQuery: string = ''
+  searchQuery: string = '';
 
   featuredVideos: any = [];
   currentSlideIndex = 0;
