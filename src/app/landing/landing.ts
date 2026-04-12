@@ -57,11 +57,11 @@ export class Landing {
 
   faqs = [
     {
-      question: 'What is a movie show?',
+      question: 'What is a Nexaview?',
       answer: 'Is a movie streaming service that offers a wide variety of award-wining TV shows, movies, anime, documentaries and more.'
     },
     {
-      question: 'How much does this movie show cost?',
+      question: 'How much does this Nexaview cost?',
       answer: 'Plans start at KES 4500 a month, no extra costs, no conflicts'
     },
     {
@@ -73,11 +73,11 @@ export class Landing {
       answer: 'You can cancel your membership online by two cliks. There are no cancellation fees, start or stop your accouct anytime.'
     },
     {
-      question: 'What can I watch on movie show',
+      question: 'What can I watch on Nexaview',
       answer: 'A huge library of feature films, documentaries, anime, TV shows and more'
     },
     {
-      question: 'Is movie show good for kids?',
+      question: 'Is Nexaview good for kids?',
       answer: 'The kids experience includes family-friendly entertainment with personal controls to restrict content by maturity rating.'
     }
   ]

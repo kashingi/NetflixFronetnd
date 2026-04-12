@@ -14,7 +14,7 @@ import { ErrorHandler } from '../../Shared/services/error-handler';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home implements OnInit, OnDestroy{
+export class Home implements OnInit, OnDestroy {
 
   allVideos: any = [];
   filteredVideos: any = [];
@@ -47,7 +47,7 @@ export class Home implements OnInit, OnDestroy{
     private errorHandler: ErrorHandler,
     private ngZone: NgZone
 
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadFeaturedVideos();
@@ -90,10 +90,25 @@ export class Home implements OnInit, OnDestroy{
     if (this.featuredVideos.length > 0) {
       queueMicrotask(() => {
         this.currentSlideIndex =
-        (this.currentSlideIndex + 1) % this.featuredVideos.length;
+          (this.currentSlideIndex + 1) % this.featuredVideos.length;
       })
     }
   }
+
+//   private startSlider() {
+//   this.stopSlider(); // prevent multiple intervals
+
+//   if (this.featuredVideos.length > 1) {
+//     this.sliderInterval = setInterval(() => {
+//       this.ngZone.run(() => {
+//         this.currentSlideIndex =
+//           (this.currentSlideIndex + 1) % this.featuredVideos.length;
+//       });
+//     }, 3000); // change slide every 3 seconds
+//   }
+// }
+
+  
 
   private stopSlider() {
     if (this.sliderInterval) {
@@ -102,13 +117,13 @@ export class Home implements OnInit, OnDestroy{
   }
 
   nextSlide() {
-    if(this.featuredVideos.length > 0) {
+    if (this.featuredVideos.length > 0) {
       this.currentSlideIndex = (this.currentSlideIndex + 1) % this.featuredVideos.length;
     }
   }
 
   prevSlide() {
-    if(this.featuredVideos.length > 0) {
+    if (this.featuredVideos.length > 0) {
       this.currentSlideIndex = (this.currentSlideIndex - 1 + this.featuredVideos.length) % this.featuredVideos.length;
     }
   }
@@ -139,9 +154,10 @@ export class Home implements OnInit, OnDestroy{
     this.error = false;
     this.currentPage = 0;
     this.allVideos = [];
+    //this.featuredVideos = [];
     const search = this.searchQuery.trim() || undefined;
     const isSearching = !!search;
-    this.loading =  true;
+    this.loading = true;
 
     this.videoService.getPublishedVideosPaginated(page, this.pageSize, search).subscribe({
       next: (response: any) => {
@@ -150,7 +166,7 @@ export class Home implements OnInit, OnDestroy{
         this.currentPage = response.number;
         this.totalElements = response.totalElements;
         this.totalPages = response.totalPages;
-        this.hasMoreVideos = this.currentPage < this.totalPages -1;
+        this.hasMoreVideos = this.currentPage < this.totalPages - 1;
         this.loading = false;
 
         if (isSearching && this.savedScrollPosition > 0) {
@@ -184,7 +200,7 @@ export class Home implements OnInit, OnDestroy{
         this.allVideos = [...this.allVideos, ...response.content];
         this.filteredVideos = [...this.filteredVideos, ...response.content];
         this.currentPage = response.number;
-        this.hasMoreVideos = this.currentPage < this.totalPages -1;
+        this.hasMoreVideos = this.currentPage < this.totalPages - 1;
         this.loadingMore = false;
       },
       error: (err) => {
@@ -203,7 +219,7 @@ export class Home implements OnInit, OnDestroy{
     this.currentPage = 0;
     this.loadVideos();
   }
-  
+
   clearSearch() {
     this.searchQuery = '';
     this.currentPage = 0;

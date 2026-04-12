@@ -4,8 +4,6 @@ export const VIDEO_CATEGORIES = [
     'Action',
     'Drama',
     'Comedy',
-    'Sci-Fi',
-    'Thriller',
     'Documentary',
     'Horror',
     'Romance',
@@ -22,12 +20,9 @@ export const VIDEO_CATEGORIES = [
     'Sport',
     'Family',
     'Technology',
-    'Software',
-    'AI',
-    'Neural Networks'
 ];
 
-export const RATINGS = ['G', 'PG', 'PG-13', 'R', 'NC-17'];
+export const RATINGS = ['Poor', 'Average', 'Good', 'Excellent', ];
 
 export const DIALOG_CONFIG = {
     VIDEO_PLAYER: {
